@@ -4,7 +4,7 @@
 
 An opinionated **ASP.NET Core** solution setup for creating web applications using **Clean Architecture** and **Domain-Driven Design** principles.
 
-The setup follows important modern development principles such as high test coverage, SOLID principles, containerisation, code-first database management, API tests, architecture tests and automated acceptance testing.
+The setup follows important modern development principles such as high test coverage, SOLID principles, containerisation, code-first database management, enforced code styles, API tests, architecture tests and automated acceptance testing.
 
 The application extends the typical *Weather Forecast* example provided in default .NET project templates and contains the following components:
 
