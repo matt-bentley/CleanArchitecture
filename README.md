@@ -13,10 +13,10 @@ The application extends the typical *Weather Forecast* example provided in defau
 - **Database** - SQL Server database integration via Entity Framework Core
 - **Migrations** - Code-First database migrations managed using a console application
 
-## Table of Content
+## Table of Contents
 
-- [Clean Architecture]
-  - [Table of Content]
+- [Clean Architecture](#Clean-Architecture)
+  - [Table of Contents](#Table-of-Contents)
   - [Quick Start]
 - [Developer Guide]
   - [IDE]
