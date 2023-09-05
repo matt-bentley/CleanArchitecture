@@ -17,32 +17,33 @@ The application extends the typical *Weather Forecast* example provided in defau
 
 - [Clean Architecture](#Clean-Architecture)
   - [Table of Contents](#Table-of-Contents)
-  - [Quick Start]
-- [Developer Guide]
-  - [IDE]
-  - [Solution Project Structure]
-  - [Nuget Libraries]
-  - [Angular]
-  - [Entity Framework (EF) Core]
-  - [Docker]
-  - [Kubernetes]
-- [Architecture and Development Principles]
-  - [Clean Architecture]
-  - [Domain-Centric Architecture]
-  - [Domain-Driven Design]
-  - [Command Query Responsibility Segregation (CQRS)]
-  - [Data Transfer Objects (DTOs) and Mapping]
-- [Migrations]
-  - [Create a Database Migration]
-  - [Run Migrations]
-- [Running the Project]
-  - [Local Environment Setup]
-  - [Projects to Run]
-- [Testing]
-  - [Unit Testing]
-  - [API Tests]
-  - [Architecture Tests]
-  - [Automated Acceptance Tests]
+  - [Quick Start](#Quick-Start)
+- [Developer Guide](#Developer-Guide)
+  - [IDE](#ide)
+  - [Solution Project Structure](#Solution-Project-Structure)
+  - [Nuget Libraries](#Nuget-Libraries)
+  - [Angular](#angular)
+  - [Entity Framework Core](#Entity-Framework-Core)
+  - [Docker](#docker)
+  - [Kubernetes](#kubernetes)
+- [Architecture and Development Principles](#Architecture-and-Development-Principles)
+  - [Clean Architecture](#Clean-Architecture)
+  - [Domain-Centric Architecture](#Domain-Centric-Architecture)
+  - [Domain-Driven Design](#Domain-Driven-Design)
+  - [Command Query Responsibility Segregation](#Command-Query-Responsibility-Segregation)
+  - [Domain Events](#Domain-Events)
+  - [Data Transfer Objects and Mapping](#Data-Transfer-Objects-and-Mapping)
+- [Migrations](#Migrations)
+  - [Create a Database Migration](#Create-a-Database-Migration)
+  - [Run Migrations](#Run-Migrations)
+- [Running the Project](#Running-the-Project)
+  - [Local Environment Setup](#Local-Environment-Setup)
+  - [Projects to Run](#Projects-to-Run)
+- [Testing](#testing)
+  - [Unit Testing](#unit-testing)
+  - [API Tests](#api-tests)
+  - [Architecture Tests](#Architecture-Tests)
+  - [Automated Acceptance Tests](#Automated-Acceptance-Tests)
   
 
 ## Quick Start
@@ -125,9 +126,9 @@ HTTP requests are proxied by the Web project during local development. This allo
 The proxy configuration can be found in the `proxy.conf.js` file in the Angular project.
 
 
-## Entity Framework (EF) Core
+## Entity Framework Core
 
-Entity Framework is used as the database ORM for this proect.
+Entity Framework Core (EF) is used as the database ORM for this proect.
 
 Install the Entity Framework CLI
 ```bash
@@ -187,7 +188,10 @@ Data can only be loaded and saved using an Aggregate Root - therefore the IRepos
 
 Aggregates can work in coordination by emitting Domain Events which are subscribed to by Domain Event Handlers in a different Bounded Context. MediatR is used to dispatch the Domain Events to their associated Domain Event Handlers.
 
-## Command Query Responsibility Segregation (CQRS)
+A full guide to the DDD techniques used in this solution can be found here:
+https://betterprogramming.pub/domain-driven-design-a-walkthrough-of-building-an-aggregate-c84113aa9975
+
+## Command Query Responsibility Segregation
 
 CQRS is used within the Application layer to mediate data between the database and the API. The code is split into:
 
@@ -209,7 +213,14 @@ The MediatR Nuget package is used for the mediator implementation to match Queri
 
 Handlers are kept in the same file as their Query/Command. This makes it easier to navigate to them when debugging code.
 
-## Data Transfer Objects (DTOs) and Mapping
+## Domain Events
+
+Domain Events are matched to their relevant Domain Event Handlers using MediatR. Domain Events are published via Aggregate Roots and dispatched directly before changes are saved to the database.
+
+A full guide to the dispatching technique can be found here:
+https://betterprogramming.pub/domain-driven-design-domain-events-and-integration-events-in-net-5a2a58884aaa
+
+## Data Transfer Objects and Mapping
 
 The API returns Data Transfer Object (DTO) classes. These are dumb POCO classes with public getters and setters - this is important to allow them to be serialized easily.
 
