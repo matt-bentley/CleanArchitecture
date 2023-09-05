@@ -1,0 +1,60 @@
+﻿version: "3.4"
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: src/CleanArchitecture.Api/Dockerfile
+      args:
+        PAT: ${PAT}
+    image: ${DOCKER_REGISTRY}cleanarchitecture/api:${TAG:-dev}
+    profiles: ["server", "cd"]
+
+  web:
+    build:
+      context: .
+      dockerfile: src/CleanArchitecture.Web/Dockerfile
+      args:
+        PAT: ${PAT}
+    image: ${DOCKER_REGISTRY}cleanarchitecture/web:${TAG:-dev}
+    profiles: ["web", "cd"]
+
+  migrations:
+    build:
+      context: .
+      dockerfile: src/CleanArchitecture.Migrations/Dockerfile
+      args:
+        PAT: ${PAT}
+    image: ${DOCKER_REGISTRY}cleanarchitecture/migrations:${TAG:-dev}
+    profiles: ["server", "cd"]
+
+  database:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    profiles: ["dev"]
+    container_name: cleanarchitecture-sql
+    user: root
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - "MSSQL_SA_PASSWORD=Admin1234!"
+    volumes:
+      - cleanarchitecture-sql:/var/opt/mssql/data
+
+  ui-tests:
+    build:
+      context: .
+      dockerfile: tests/CleanArchitecture.AcceptanceTests/Dockerfile
+      args:
+        PAT: ${PAT}
+    image: ${DOCKER_REGISTRY}cleanarchitecture/acceptancetests:${TAG:-dev}
+    container_name: weather-acceptancetests${TAG:-dev}
+    environment:
+      - Browser__Headless=true
+      - Browser__SlowMoMilliseconds=150
+      - Browser__BaseUrl=${BaseUrl}
+    profiles: ["ui-tests"]
+
+
+volumes: # this volume ensures that data is persisted when the container is deleted
+  cleanarchitecture-sql:

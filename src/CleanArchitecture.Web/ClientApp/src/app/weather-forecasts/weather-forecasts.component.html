@@ -1,0 +1,52 @@
+<h1 id="tableLabel">Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!selectedLocationId"><strong>Please select a location to see the forecast.</strong></p>
+
+<div class="action-bar container">
+  <div class="row">
+    <div class="col">
+      <div class="form-floating">
+        <select class="form-select" id="floatingSelect" aria-label="Location" [(ngModel)]="selectedLocationId"
+          (change)="loadForecasts()">
+          <option *ngFor="let location of locations" [value]="location.id">{{location.city}}</option>
+        </select>
+        <label for="floatingSelect">Location</label>
+      </div>
+    </div>
+    <div class="col">
+      <div style="float: right" *ngIf="selectedLocationId">
+        <button class="btn btn-info" (click)="generate()">Generate</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<br/>
+
+<div *ngIf="selectedLocationId">
+  <p id="generate-prompt" *ngIf="forecasts.length === 0"><em>Use the <strong>Generate</strong> button to generate some weather forecasts.</em></p>
+
+  <table id="forecasts" class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts.length">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Temp. (C)</th>
+        <th>Temp. (F)</th>
+        <th>Summary</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let forecast of forecasts">
+        <td>{{ forecast.date }}</td>
+        <td>{{ forecast.temperatureC }}</td>
+        <td>{{ forecast.temperatureF }}</td>
+        <td>{{ forecast.summary }}</td>
+        <td><button class="btn btn-danger" (click)="delete(forecast.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
