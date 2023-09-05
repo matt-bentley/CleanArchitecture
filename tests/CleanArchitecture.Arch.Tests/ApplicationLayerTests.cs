@@ -85,7 +85,7 @@ namespace CleanArchitecture.Arch.Tests
                            .And().DoNotHaveName("IntegrationSupportGroupUserDto")
             .Should().BeMutable()
             .AssertIsSuccessful();
-        }    
+        }
 
         [Fact]
         public void ApplicationLayer_MappingProfiles_ShouldOnlyResideInApplication()

@@ -17,7 +17,7 @@ namespace CleanArchitecture.AcceptanceTests.Pages.Abstract
         public async Task RefreshAsync()
         {
             await Page.ReloadAsync();
-        }       
+        }
 
         public async Task<bool> WaitForConditionAsync(Func<Task<bool>> condition, bool waitForValue = true, int checkDelayMs = 100, int numberOfChecks = 300)
         {

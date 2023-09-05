@@ -23,7 +23,7 @@ namespace CleanArchitecture.Application.Weather.Queries
         {
             var forecastsQuery = _repository.GetAll();
 
-            if(request.LocationId.HasValue)
+            if (request.LocationId.HasValue)
             {
                 forecastsQuery = forecastsQuery.Where(e => e.LocationId == request.LocationId.Value);
             }

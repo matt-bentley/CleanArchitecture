@@ -42,7 +42,7 @@ namespace CleanArchitecture.AcceptanceTests.Steps
         [Then(@"'(.*)' weather forecasts present")]
         public async Task ThenWeatherForecastsPresent(int count)
         {
-            if(count == 0)
+            if (count == 0)
             {
                 var isVisible = await _page.Forecasts.IsVisibleAsync();
                 isVisible.Should().BeFalse();

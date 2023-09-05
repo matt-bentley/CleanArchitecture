@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Api.Tests.Controllers
 {
-    public class LocationsControllerTests 
+    public class LocationsControllerTests
     {
         private const string BASE_URL = "api/locations";
         private readonly TestWebApplication _application = new TestWebApplication();

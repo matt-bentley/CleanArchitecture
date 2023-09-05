@@ -54,7 +54,7 @@ namespace CleanArchitecture.Infrastructure.Tests.Repositories.Abstract
             _connection.Close();
             _connection.Dispose();
             return Task.CompletedTask;
-        }        
+        }
 
         protected IRepository<T> GetRepository<T>()
         where T : AggregateRoot

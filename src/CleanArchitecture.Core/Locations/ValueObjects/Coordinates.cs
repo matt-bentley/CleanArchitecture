@@ -10,8 +10,8 @@ namespace CleanArchitecture.Core.Locations.ValueObjects
 
         private Coordinates(decimal latitude, decimal longitude)
         {
-            Latitude= latitude;
-            Longitude= longitude;
+            Latitude = latitude;
+            Longitude = longitude;
         }
 
         public static Coordinates Create(decimal latitude, decimal longitude)
@@ -23,7 +23,7 @@ namespace CleanArchitecture.Core.Locations.ValueObjects
 
         protected override IEnumerable<IComparable> GetEqualityComponents()
         {
-            yield return Latitude; 
+            yield return Latitude;
             yield return Longitude;
         }
 

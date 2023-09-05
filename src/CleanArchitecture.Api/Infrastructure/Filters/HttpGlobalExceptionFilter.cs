@@ -39,8 +39,8 @@ namespace CleanArchitecture.Api.Infrastructure.Filters
             {
                 var message = _env.IsDevelopment() ? context.Exception.ToString() : "Sorry an error occured, please try again.";
                 envelope = Envelope.Create(message, HttpStatusCode.InternalServerError);
-            }          
-            
+            }
+
             context.Result = envelope.ToActionResult();
             context.HttpContext.Response.StatusCode = envelope.Status;
             context.ExceptionHandled = true;
