@@ -1,0 +1,4 @@
+apiVersion: v2
+name: web
+version: 1.0.0
+description: Clean Architecture Web Application

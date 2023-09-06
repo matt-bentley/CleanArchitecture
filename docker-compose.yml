@@ -5,27 +5,21 @@ services:
     build:
       context: .
       dockerfile: src/CleanArchitecture.Api/Dockerfile
-      args:
-        PAT: ${PAT}
-    image: ${DOCKER_REGISTRY}cleanarchitecture/api:${TAG:-dev}
+    image: ${DOCKER_REGISTRY}cleanarchitecture/api:${TAG:-latest}
     profiles: ["server", "cd"]
 
   web:
     build:
       context: .
       dockerfile: src/CleanArchitecture.Web/Dockerfile
-      args:
-        PAT: ${PAT}
-    image: ${DOCKER_REGISTRY}cleanarchitecture/web:${TAG:-dev}
+    image: ${DOCKER_REGISTRY}cleanarchitecture/web:${TAG:-latest}
     profiles: ["web", "cd"]
 
   migrations:
     build:
       context: .
       dockerfile: src/CleanArchitecture.Migrations/Dockerfile
-      args:
-        PAT: ${PAT}
-    image: ${DOCKER_REGISTRY}cleanarchitecture/migrations:${TAG:-dev}
+    image: ${DOCKER_REGISTRY}cleanarchitecture/migrations:${TAG:-latest}
     profiles: ["server", "cd"]
 
   database:
@@ -47,7 +41,7 @@ services:
       dockerfile: tests/CleanArchitecture.AcceptanceTests/Dockerfile
       args:
         PAT: ${PAT}
-    image: ${DOCKER_REGISTRY}cleanarchitecture/acceptancetests:${TAG:-dev}
+    image: ${DOCKER_REGISTRY}cleanarchitecture/acceptancetests:${TAG:-latest}
     container_name: weather-acceptancetests${TAG:-dev}
     environment:
       - Browser__Headless=true

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0a906579-dee5-4ef0-bac9-7496400b1c1e</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>charts</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)api\Chart.yaml" />
+    <None Include="$(MSBuildThisFileDirectory)api\templates\api-deployment.yaml" />
+    <None Include="$(MSBuildThisFileDirectory)api\templates\api-hpa.yaml" />
+    <None Include="$(MSBuildThisFileDirectory)api\templates\database-migration-job.yaml" />
+    <None Include="$(MSBuildThisFileDirectory)api\templates\web-service.yaml" />
+    <None Include="$(MSBuildThisFileDirectory)api\values.yaml" />
+    <None Include="$(MSBuildThisFileDirectory)web\Chart.yaml" />
+    <None Include="$(MSBuildThisFileDirectory)web\templates\deployment.yaml" />
+    <None Include="$(MSBuildThisFileDirectory)web\templates\web-service.yaml" />
+    <None Include="$(MSBuildThisFileDirectory)web\values.yaml" />
+  </ItemGroup>
+</Project>

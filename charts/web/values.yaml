@@ -1,0 +1,12 @@
+# Default values for chart
+
+service:
+  type: ClusterIP
+  port: 80
+
+deploy:
+  replicas: 1
+  registry: "docker.io"
+  imageTag: "latest"
+  containerPort: 8080
+

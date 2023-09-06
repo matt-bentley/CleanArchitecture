@@ -1,0 +1,5 @@
+apiVersion: v2
+name: api
+version: 1.0.0
+description: Clean Architecture API
+

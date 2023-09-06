@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 'web'
+spec:
+  replicas: {{ default 1 .Values.deploy.replicas }}
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - image: "{{.Values.deploy.registry}}/cleanarchitecture/web:{{.Values.deploy.imageTag}}"
+          imagePullPolicy: Always
+          name: web
+          env:
+            - name: ASPNETCORE_URLS
+              value: "http://+:{{.Values.deploy.containerPort}};"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "10m"
+            limits:
+              memory: "256Mi"
+              cpu: "100m"
+          securityContext:
+            runAsUser: 1000
+            privileged: false
+            allowPrivilegeEscalation: false
+          readinessProbe:
+            httpGet:
+              path: /liveness
+              port: http
+            periodSeconds: 30
+          livenessProbe:
+            httpGet:
+              path: /liveness
+              port: http
+            periodSeconds: 30
+            failureThreshold: 5
+          startupProbe:
+            httpGet:
+              path: /liveness
+              port: http
+            periodSeconds: 2
+            failureThreshold: 60
+          ports:
+          - name: http
+            containerPort: {{.Values.deploy.containerPort}}
+            protocol: TCP
+      restartPolicy: Always

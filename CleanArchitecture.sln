@@ -43,6 +43,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.Web", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.AcceptanceTests", "tests\CleanArchitecture.AcceptanceTests\CleanArchitecture.AcceptanceTests.csproj", "{DE7C093A-88E8-45D7-8D87-558F0C41D02B}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "pipelines", "pipelines\pipelines.shproj", "{F518FAC2-B2FC-4438-B5B1-2B001404BA43}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "charts", "charts\charts.shproj", "{0A906579-DEE5-4EF0-BAC9-7496400B1C1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,5 +130,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E1C4BF67-95E4-450E-A124-147B5DAEA827}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		charts\charts.projitems*{0a906579-dee5-4ef0-bac9-7496400b1c1e}*SharedItemsImports = 13
+		pipelines\pipelines.projitems*{f518fac2-b2fc-4438-b5b1-2b001404ba43}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
