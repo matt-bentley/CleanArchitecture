@@ -7,7 +7,7 @@ namespace CleanArchitecture.Core.Weather.Entities
 {
     public sealed class WeatherForecast : AggregateRoot
     {
-        private WeatherForecast(DateTime date, Temperature temperature, string? summary, Guid locationId)
+        private WeatherForecast(DateTime date, Temperature temperature, string summary, Guid locationId)
         {
             Date = date;
             Temperature = temperature;
@@ -39,7 +39,7 @@ namespace CleanArchitecture.Core.Weather.Entities
 
         public DateTime Date { get; private set; }
         public Temperature Temperature { get; private set; }
-        public string? Summary { get; private set; }
+        public string Summary { get; private set; }
         public Guid LocationId { get; private set; }
 
         public void UpdateDate(DateTime date)
