@@ -178,7 +178,7 @@ Domain Centric Architecture is used to split the code in the Core and Applicatio
 
 The code within each use-case folder is split by object type e.g. Entities, Services.
 
-Domain Centric Architecture makes it easier to navigate between code when working on a particular concept. It also means that code is already separated for if a concept needs to be moved in the future such as to its own independant Microservice.
+Domain Centric Architecture makes it easier to navigate between code when working on a particular concept. It also means that code is already separated for if a concept needs to be moved in the future such as to its own independent Microservice.
 
 ## Domain-Driven Design
 
