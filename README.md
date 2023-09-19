@@ -65,13 +65,13 @@ docker-compose --profile dev up -d
 
 The solution can be installed as a template to be used for creating new solutions via the .NET ClI or Visual Studio/Rider.
 
-`
+```bash
 # Install from directory
 dotnet new install .
 
 # Uninstall from directory
 dotnet new uninstall .
-`
+```
 
 # Developer Guide
 
