@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Arch.Tests
 {
+    [Collection("Sequential")]
     public class ApiLayerTests : BaseTests
     {
         [Fact]

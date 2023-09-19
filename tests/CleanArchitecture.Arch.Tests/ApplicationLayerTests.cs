@@ -4,6 +4,7 @@ using AutoMapper;
 
 namespace CleanArchitecture.Arch.Tests
 {
+    [Collection("Sequential")]
     public class ApplicationLayerTests : BaseTests
     {
         [Fact]

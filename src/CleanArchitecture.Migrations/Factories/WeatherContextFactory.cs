@@ -6,7 +6,7 @@ namespace CleanArchitecture.Migrations.Factories
 {
     public class WeatherContextFactory : IDesignTimeDbContextFactory<WeatherContext>
     {
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
         public WeatherContextFactory()
         {

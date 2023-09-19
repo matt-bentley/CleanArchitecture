@@ -32,7 +32,11 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddCors();
 builder.Services.AddHealthChecks()
     .AddCheck("self", () => HealthCheckResult.Healthy("Application is running"))
-    .AddSqlServer(builder.Configuration["Database:ConnectionString"]!);
+#if (UseSqlServer)
+    .AddSqlServer(builder.Configuration["Database:SqlConnectionString"]!);
+#else
+    .AddNpgSql(builder.Configuration["Database:PostgresConnectionString"]!);
+#endif
 
 //Add HSTS
 builder.Services.AddHsts(options =>

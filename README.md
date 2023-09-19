@@ -10,7 +10,7 @@ The application extends the typical *Weather Forecast* example provided in defau
 
 - **API** - ASP.NET 7 REST API with Swagger support
 - **Angular SPA** - Angular SPA hosted using ASP.NET 7
-- **Database** - SQL Server database integration via Entity Framework Core
+- **Database** - SQL Server/PostgreSQL database integration via Entity Framework Core
 - **Migrations** - Code-First database migrations managed using a console application
 
 ## Table of Contents
@@ -18,6 +18,7 @@ The application extends the typical *Weather Forecast* example provided in defau
 - [Clean Architecture](#Clean-Architecture)
   - [Table of Contents](#Table-of-Contents)
   - [Quick Start](#Quick-Start)
+  - [Install Template](#Install-Template)
 - [Developer Guide](#Developer-Guide)
   - [IDE](#ide)
   - [Solution Project Structure](#Solution-Project-Structure)
@@ -59,6 +60,18 @@ docker-compose --profile dev up -d
 2. Run the **CleanArchitecture.Migrations** project to deploy database schema
 3. Run the **CleanArchitecture.Api** and **CleanArchitecture.Web** projects to debug the application
 
+
+## Install Template
+
+The solution can be installed as a template to be used for creating new solutions via the .NET ClI or Visual Studio/Rider.
+
+`
+# Install from directory
+dotnet new install .
+
+# Uninstall from directory
+dotnet new uninstall .
+`
 
 # Developer Guide
 
@@ -263,7 +276,7 @@ The following steps must be performed to setup your local environment for runnin
 
 Docker is used to start the following services locally:
 
-- SQL Server
+- SQL Server or PostgreSQL
 
 A **dev** profile is included in the docker-compose file to run the required local services:
 ```

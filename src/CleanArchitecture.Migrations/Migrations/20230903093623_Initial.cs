@@ -15,11 +15,20 @@ namespace CleanArchitecture.Migrations.Migrations
                 name: "Locations",
                 columns: table => new
                 {
+#if (UseSqlServer)
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+#else
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+#endif
                     Country = table.Column<string>(type: "varchar(64)", nullable: false),
                     City = table.Column<string>(type: "varchar(64)", nullable: false),
+#if (UseSqlServer)
                     Latitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Longitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+#else
+                    Latitude = table.Column<decimal>(type: "numeric", nullable: false),
+                    Longitude = table.Column<decimal>(type: "numeric", nullable: false)
+#endif
                 },
                 constraints: table =>
                 {
@@ -30,11 +39,21 @@ namespace CleanArchitecture.Migrations.Migrations
                 name: "WeatherForecasts",
                 columns: table => new
                 {
+#if (UseSqlServer)
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Temperature = table.Column<int>(type: "int", nullable: false),
+#else
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Temperature = table.Column<int>(type: "integer", nullable: false),
+#endif
                     Summary = table.Column<string>(type: "varchar(64)", nullable: false),
+#if (UseSqlServer)
                     LocationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+#else
+                    LocationId = table.Column<Guid>(type: "uuid", nullable: false)
+#endif
                 },
                 constraints: table =>
                 {

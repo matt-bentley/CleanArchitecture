@@ -51,7 +51,11 @@ namespace CleanArchitecture.Infrastructure.AutofacModules
         {
             var databaseSettings = DatabaseSettings.Create(configuration);
             var builder = new DbContextOptionsBuilder<WeatherContext>();
-            builder.UseSqlServer(databaseSettings.ConnectionString);
+#if (UseSqlServer)
+            builder.UseSqlServer(databaseSettings.SqlConnectionString);
+#else
+            builder.UseNpgsql(databaseSettings.PostgresConnectionString);
+#endif
             return builder.Options;
         }
     }

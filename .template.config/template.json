@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Matt Bentley",
+  "name": "Clean Architecture API",
+  "classifications": [ "Clean Architecture", "API", "Angular" ],
+  "identity": "MattBentley.CleanArchitecture",
+  "shortName": "cleanarchitecture",
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "sourceName": "CleanArchitecture",
+  "preferNameDirectory": true,
+  "symbols": {
+    "AuthoringMode": {
+      "type": "generated",
+      "generator": "constant",
+      "parameters": {
+        "value": "false"
+      }
+    },
+    "IncludeTests": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "displayName": "Include Tests",
+      "description": "Include test projects. This will include Unit, API and UI tests."
+    },
+    "IncludeWeb": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "displayName": "Use Web Application",
+      "description": "Create an Angular Web Application."
+    },
+    "DatabaseType": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "SQL Server",
+          "description": "Adds the SQL Server Entity Framework provider."
+        },
+        {
+          "choice": "PostgreSQL",
+          "description": "Adds the PostgreSQL Entity Framework provider."
+        }
+      ],
+      "defaultValue": "SQL Server",
+      "displayName": "Database Type",
+      "description": "Configure which Entity Framework provider should be used for the Infrastructure layer when connecting to the Database."
+    },
+    "UseSqlServer": {
+      "type": "computed",
+      "value": "(DatabaseType == \"SQL Server\")"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!IncludeTests)",
+          "exclude": [ "tests/**" ]
+        },
+        {
+          "condition": "(!IncludeWeb)",
+          "exclude": [
+            "src/CleanArchitecture.Web/**",
+            "tests/CleanArchitecture.AcceptanceTests/**",
+            "**/charts/web/**"
+          ]
+        },
+        {
+          "exclude": [
+            "**/node_modules/**",
+            "**/.angular/**"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -12,7 +12,11 @@ namespace CleanArchitecture.Migrations.Factories
             var appSettings = DatabaseSettings.Create(configuration);
 
             return new DbContextOptionsBuilder<WeatherContext>()
-                .UseSqlServer(appSettings.ConnectionString, b => b.MigrationsAssembly("CleanArchitecture.Migrations"))
+#if (UseSqlServer)
+                .UseSqlServer(appSettings.SqlConnectionString, b => b.MigrationsAssembly("CleanArchitecture.Migrations"))
+#else
+                .UseNpgsql(appSettings.PostgresConnectionString, b => b.MigrationsAssembly("CleanArchitecture.Migrations"))
+#endif
                 .Options;
         }
     }

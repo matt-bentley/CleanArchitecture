@@ -5,6 +5,7 @@ using CleanArchitecture.Core.Abstractions.Entities;
 
 namespace CleanArchitecture.Arch.Tests
 {
+    [Collection("Sequential")]
     public class DomainDrivenDesignTests : BaseTests
     {
         [Fact]

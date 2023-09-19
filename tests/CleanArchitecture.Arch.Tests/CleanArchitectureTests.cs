@@ -2,6 +2,7 @@ using CleanArchitecture.Application.Abstractions.Repositories;
 
 namespace CleanArchitecture.Arch.Tests
 {
+    [Collection("Sequential")]
     public class CleanArchitectureTests : BaseTests
     {
         [Fact]

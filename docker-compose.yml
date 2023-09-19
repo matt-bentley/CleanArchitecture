@@ -22,7 +22,8 @@ services:
     image: ${DOCKER_REGISTRY}cleanarchitecture/migrations:${TAG:-latest}
     profiles: ["server", "cd"]
 
-  database:
+#if (UseSqlServer)
+  sql:
     image: mcr.microsoft.com/mssql/server:2019-latest
     profiles: ["dev"]
     container_name: cleanarchitecture-sql
@@ -35,6 +36,21 @@ services:
     volumes:
       - cleanarchitecture-sql:/var/opt/mssql/data
 
+#else
+  postgres:
+    image: postgres:latest
+    profiles: ["dev"]
+    container_name: cleanarchitecture-postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - "POSTGRES_PASSWORD=Admin1234!"
+      - POSTGRES_DB=Weather
+    volumes:
+      - cleanarchitecture-postgres:/var/lib/postgresql
+
+#endif
   ui-tests:
     build:
       context: .
@@ -51,4 +67,8 @@ services:
 
 
 volumes: # this volume ensures that data is persisted when the container is deleted
+#if (UseSqlServer)
   cleanarchitecture-sql:
+#else
+  cleanarchitecture-postgres:
+#endif  

@@ -11,6 +11,10 @@ namespace CleanArchitecture.Infrastructure.Settings
             return databaseSettings;
         }
 
-        public string? ConnectionString { get; set; }
+#if (UseSqlServer)
+        public string? SqlConnectionString { get; set; }
+#else
+        public string? PostgresConnectionString { get; set; }
+#endif
     }
 }
