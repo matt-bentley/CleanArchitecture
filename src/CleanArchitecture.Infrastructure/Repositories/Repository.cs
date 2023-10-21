@@ -27,8 +27,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
 
         public async Task<T?> GetByIdAsync(Guid id)
         {
-            return await GetAll(false)
-                .FirstOrDefaultAsync(e => e.Id == id);
+            return await _entitySet.FindAsync(id);
         }
 
         public void Insert(T entity)
