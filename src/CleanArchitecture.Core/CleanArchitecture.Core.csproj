@@ -8,8 +8,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CSharpFunctionalExtensions" Version="2.40.0" />
-		<PackageReference Include="MediatR" Version="12.1.1" />
+		<PackageReference Include="CSharpFunctionalExtensions" Version="2.41.0" />
+		<PackageReference Include="MediatR" Version="12.2.0" />
 	</ItemGroup>
 
 </Project>
