@@ -344,7 +344,7 @@ Playwright is an automated UI Testing framework developed by Microsoft. If can b
 Code can be auto-generated from using the web application by running the following:
 
 ```powershell
-PowerShell.exe -ExecutionPolicy Bypass -File .\tests\CleanArchitecture.AcceptanceTests\bin\Debug\net7.0\playwright.ps1 codegen https://localhost:44411/
+PowerShell.exe -ExecutionPolicy Bypass -File .\tests\CleanArchitecture.AcceptanceTests\bin\Debug\net8.0\playwright.ps1 codegen https://localhost:44411/
 ```
 
 ### SpecFlow
