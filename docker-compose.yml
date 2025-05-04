@@ -13,6 +13,8 @@ services:
       context: .
       dockerfile: src/CleanArchitecture.Web/Dockerfile
     image: ${DOCKER_REGISTRY}cleanarchitecture/web:${TAG:-latest}
+    ports:
+      - 8080:8080
     profiles: ["web", "cd"]
 
   migrations:
@@ -55,8 +57,6 @@ services:
     build:
       context: .
       dockerfile: tests/CleanArchitecture.AcceptanceTests/Dockerfile
-      args:
-        PAT: ${PAT}
     image: ${DOCKER_REGISTRY}cleanarchitecture/acceptancetests:${TAG:-latest}
     container_name: weather-acceptancetests${TAG:-dev}
     environment:

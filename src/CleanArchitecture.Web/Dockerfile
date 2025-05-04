@@ -24,8 +24,9 @@ WORKDIR "/src/CleanArchitecture.Web"
 RUN dotnet restore "CleanArchitecture.Web.csproj" && \
     dotnet publish "CleanArchitecture.Web.csproj" --no-restore -c Release -o /app
 
+RUN chown -R 1000:1000 /app/wwwroot
+
 FROM base AS final
 COPY --from=publish /app .
-RUN chown -R 1000:1000 wwwroot
 USER 1000
 ENTRYPOINT ["dotnet", "CleanArchitecture.Web.dll"]

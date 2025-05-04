@@ -9,16 +9,26 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { WeatherForecastsComponent } from './weather-forecasts/weather-forecasts.component';
 
-@NgModule({ declarations: [
+@NgModule({
+    declarations: [
         AppComponent,
         NavMenuComponent,
         HomeComponent,
         WeatherForecastsComponent
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    bootstrap: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
         FormsModule,
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'weather-forecast', component: WeatherForecastsComponent },
-        ])], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        ])
+    ],
+    providers: [
+        provideHttpClient(withInterceptorsFromDi())
+    ]
+})
 export class AppModule { }

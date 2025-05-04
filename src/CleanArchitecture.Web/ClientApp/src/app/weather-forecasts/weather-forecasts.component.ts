@@ -5,8 +5,9 @@ import { LocationsService } from '../_shared/services/locations.service';
 import { WeatherLocation } from '../_shared/models/location.model';
 
 @Component({
-  selector: 'app-weather-forecasts',
-  templateUrl: './weather-forecasts.component.html'
+    selector: 'app-weather-forecasts',
+    templateUrl: './weather-forecasts.component.html',
+    standalone: false
 })
 export class WeatherForecastsComponent implements OnInit {
 
