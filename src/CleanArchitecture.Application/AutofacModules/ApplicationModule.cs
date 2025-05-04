@@ -2,6 +2,7 @@
 using Autofac;
 using AutoMapper;
 using System.Reflection;
+using MediatR.NotificationPublishers;
 
 namespace CleanArchitecture.Application.AutofacModules
 {
@@ -10,6 +11,9 @@ namespace CleanArchitecture.Application.AutofacModules
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly)
+                // this publisher causes problems with the EF Core DbContext
+                // as it is not thread safe
+                .Where(e => e != typeof(TaskWhenAllPublisher))
                 .AsImplementedInterfaces();
 
             // Register the DomainEventHandler classes (they implement INotificationHandler<>) in assembly

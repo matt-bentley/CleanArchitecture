@@ -4,7 +4,7 @@ namespace CleanArchitecture.Api.Tests.Controllers
 {
     public class ErrorsControllerTests
     {
-        private const string BASE_URL = "api/weatherforecasts";
+        private const string BASE_URL = "api/weather-forecasts";
         private readonly TestWebApplication _application = new TestWebApplication();
 
         public ErrorsControllerTests()

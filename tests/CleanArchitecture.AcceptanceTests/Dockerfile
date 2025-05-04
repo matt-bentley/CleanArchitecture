@@ -1,12 +1,10 @@
-﻿FROM mcr.microsoft.com/playwright:focal
+﻿FROM mcr.microsoft.com/playwright:v1.52.0-jammy
 
-RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+RUN wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
 	dpkg -i packages-microsoft-prod.deb && \
 	rm packages-microsoft-prod.deb && \
 	apt-get update && \
-    apt-get install -y apt-transport-https && \
-    apt-get update && \
-    apt-get install -y dotnet-sdk-7.0
+    apt-get install -y dotnet-sdk-8.0
 
 COPY ["src/", "/src/"]
 COPY ["tests/", "/tests/"]

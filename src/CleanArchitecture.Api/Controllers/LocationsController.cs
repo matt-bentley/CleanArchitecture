@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CleanArchitecture.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/locations")]
     [Produces("application/json")]
     public sealed class LocationsController : ControllerBase
     {

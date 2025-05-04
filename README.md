@@ -8,8 +8,8 @@ The setup follows important modern development principles such as high test cove
 
 The application extends the typical *Weather Forecast* example provided in default .NET project templates and contains the following components:
 
-- **API** - ASP.NET 7 REST API with Swagger support
-- **Angular SPA** - Angular SPA hosted using ASP.NET 7
+- **API** - ASP.NET 8 REST API with Swagger support
+- **Angular SPA** - Angular SPA hosted using ASP.NET 8
 - **Database** - SQL Server/PostgreSQL database integration via Entity Framework Core
 - **Migrations** - Code-First database migrations managed using a console application
 
@@ -77,7 +77,7 @@ dotnet new uninstall .
 
 The following steps are required to get your Developer machine ready for working with this project. 
 
-This project uses NET 7.0 and Angular. Everything you need to get started should be included below - if there are any gaps, please do add them in.
+This project uses NET 8.0 and Angular. Everything you need to get started should be included below - if there are any gaps, please do add them in.
 
 ## IDE
 
@@ -93,11 +93,11 @@ VS Code is recommended for working on the Angular SPA application due to the add
 
 The solution is broken down into the following projects:
 
-- **CleanArchitecture.Api** - ASP.NET 7 Web API with Swagger support
+- **CleanArchitecture.Api** - ASP.NET 8 Web API with Swagger support
 - **CleanArchitecture.Application** - Application layer containing Commands/Queries/Domain Event Handlers
 - **CleanArchitecture.Core** - Domain layer containing Entities and Domain Events
 - **CleanArchitecture.Infrastructure** - Infrastructure layer for all external integration e.g. database, notifications, serialization
-- **CleanArchitecture.Web** - Angular SPA hosted using ASP.NET 7
+- **CleanArchitecture.Web** - Angular SPA hosted using ASP.NET 8
 - **CleanArchitecture.Hosting** - Hosting cross-cutting concerns e.g. configuration and logging
 - **CleanArchitecture.Migrations** - Code-First EF database migrations and migration runner
 
@@ -344,7 +344,7 @@ Playwright is an automated UI Testing framework developed by Microsoft. If can b
 Code can be auto-generated from using the web application by running the following:
 
 ```powershell
-PowerShell.exe -ExecutionPolicy Bypass -File .\tests\CleanArchitecture.AcceptanceTests\bin\Debug\net7.0\playwright.ps1 codegen https://localhost:44411/
+PowerShell.exe -ExecutionPolicy Bypass -File .\tests\CleanArchitecture.AcceptanceTests\bin\Debug\net8.0\playwright.ps1 codegen https://localhost:44411/
 ```
 
 ### SpecFlow

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CleanArchitecture.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/weather-forecasts")]
     [Produces("application/json")]
     public sealed class WeatherForecastsController : ControllerBase
     {

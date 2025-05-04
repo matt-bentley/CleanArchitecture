@@ -14,15 +14,15 @@ export class WeatherService {
     }
 
     public get(locationId: string): Observable<WeatherForecast[]> {
-        return this._http.get<WeatherForecast[]>(`api/weatherforecasts?locationId=${locationId}`);
+        return this._http.get<WeatherForecast[]>(`api/weather-forecasts?locationId=${locationId}`);
     }
 
     public create(forecast: CreateWeatherForecast) : Observable<CreatedResult>{
-        return this._http.post<CreatedResult>('api/weatherforecasts', forecast);
+        return this._http.post<CreatedResult>('api/weather-forecasts', forecast);
     }
 
     public delete(id: string): Observable<void> {
-        return this._http.delete<void>(`api/weatherforecasts/${id}`);
+        return this._http.delete<void>(`api/weather-forecasts/${id}`);
     }
 
     public getTemperatureSummary(temperature: number): string {

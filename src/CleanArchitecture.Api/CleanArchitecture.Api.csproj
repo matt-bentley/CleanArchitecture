@@ -10,7 +10,7 @@
 	<!--#endif-->
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
@@ -22,10 +22,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="7.0.0" />
-		<PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="7.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<!--#if (UseSqlServer)-->
+		<PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.2" />
+		<!--#else-->
+		<PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="8.0.2" />
+		<!--#endif-->		
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.15" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>
