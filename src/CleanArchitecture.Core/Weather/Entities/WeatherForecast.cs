@@ -15,9 +15,7 @@ namespace CleanArchitecture.Core.Weather.Entities
             LocationId = locationId;
         }
 
-#pragma warning disable CS8618 // this is needed for the ORM for serializing Value Objects
         private WeatherForecast()
-#pragma warning restore CS8618
         {
 
         }
@@ -34,7 +32,7 @@ namespace CleanArchitecture.Core.Weather.Entities
 
         private void PublishCreated()
         {
-            AddDomainEvent(new WeatherForecastCreatedDomainEvent(Id, Temperature.Celcius, Summary!, Date));
+            AddDomainEvent(new WeatherForecastCreatedDomainEvent(Id, Temperature.Celcius, Summary, Date));
         }
 
         public DateTime Date { get; private set; }

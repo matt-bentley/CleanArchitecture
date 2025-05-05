@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using CleanArchitecture.Core.Abstractions.DomainEvents;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace CleanArchitecture.Application.Abstractions.DomainEventHandlers
 {
@@ -21,5 +22,7 @@ namespace CleanArchitecture.Application.Abstractions.DomainEventHandlers
         }
 
         protected abstract Task OnHandleAsync(T @event);
+
+        protected static string CorrelationId => Activity.Current?.Id ?? Guid.NewGuid().ToString();
     }
 }

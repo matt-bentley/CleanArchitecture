@@ -46,6 +46,14 @@ builder.Services.AddHsts(options =>
     options.MaxAge = TimeSpan.FromDays(365);
 });
 
+builder.Services.AddMiniTransit((_, configure) =>
+{
+    configure.UseRabbitMQ(options =>
+    {
+        builder.Configuration.GetSection("EventBus").Bind(options);
+    });
+});
+
 builder.Host.ConfigureContainer<ContainerBuilder>(container =>
 {
     container.RegisterModule(new ApplicationModule());

@@ -2,16 +2,18 @@
 
 # Clean Architecture 
 
-An opinionated **ASP.NET Core** solution setup for creating web applications using **Clean Architecture** and **Domain-Driven Design** principles.
+An opinionated **ASP.NET Core** solution setup for creating event driven web applications using **Clean Architecture** and **Domain-Driven Design** principles.
 
 The setup follows important modern development principles such as high test coverage, SOLID principles, containerisation, code-first database management, enforced code styles, API tests, architecture tests and automated acceptance testing.
 
 The application extends the typical *Weather Forecast* example provided in default .NET project templates and contains the following components:
 
 - **API** - ASP.NET 8 REST API with Swagger support
-- **Angular SPA** - Angular SPA hosted using ASP.NET 8
+- **Angular SPA** - Angular 19 SPA hosted using ASP.NET 8
 - **Database** - SQL Server/PostgreSQL database integration via Entity Framework Core
 - **Migrations** - Code-First database migrations managed using a console application
+- **Message Bus** - RabbitMQ message bus integrated using [MiniTransit](https://github.com/matt-bentley/MiniTransit)
+- **Integration** - Console application worker service for processing events from the message bus
 
 ## Table of Contents
 
@@ -58,7 +60,10 @@ docker-compose --profile dev up -d
 ```
 
 2. Run the **CleanArchitecture.Migrations** project to deploy database schema
-3. Run the **CleanArchitecture.Api** and **CleanArchitecture.Web** projects to debug the application
+3. Run the following projects to debug the application
+- **CleanArchitecture.Api**
+- **CleanArchitecture.Web**
+- **CleanArchitecture.Integration**
 
 
 ## Install Template
@@ -97,7 +102,8 @@ The solution is broken down into the following projects:
 - **CleanArchitecture.Application** - Application layer containing Commands/Queries/Domain Event Handlers
 - **CleanArchitecture.Core** - Domain layer containing Entities and Domain Events
 - **CleanArchitecture.Infrastructure** - Infrastructure layer for all external integration e.g. database, notifications, serialization
-- **CleanArchitecture.Web** - Angular SPA hosted using ASP.NET 8
+- **CleanArchitecture.Integration** - .NET 8 console application worker service for processing events from the message bus
+- **CleanArchitecture.Web** - Angular 19 SPA hosted using ASP.NET 8
 - **CleanArchitecture.Hosting** - Hosting cross-cutting concerns e.g. configuration and logging
 - **CleanArchitecture.Migrations** - Code-First EF database migrations and migration runner
 
@@ -116,6 +122,7 @@ The following Nuget libraries are used across the solution:
 - **Swagger/Swashbuckle** - UI for interacting with API
 - **AutoMapper** - Used to map from Entities in *Core* to DTOs in *Application*
 - **MediatR** - Mediator implementation for implementing *Domain Event Handlers* and *CQRS*
+- **MiniTransit** - [MiniTransit](https://github.com/matt-bentley/MiniTransit) is a lightweight, extensible .NET messaging library designed as a simpler alternative to MassTransit and NServiceBus
 - **CSharpFunctionalExtensions** - Base Class implementation for *Entities* and *ValueObjects*
 - **XUnit** - Test runner for Unit and API tests
 - **FluentAssertions** - Fluent extension methods for running assertions in tests
@@ -125,7 +132,7 @@ The following Nuget libraries are used across the solution:
 
 ## Angular
 
-Angular is used for the SPA website for this project. The code for the Angular project can be found in `src/CleanArchitecture/ClientApp`.
+Angular 19 is used for the SPA website for this project. The code for the Angular project can be found in `src/CleanArchitecture/ClientApp`.
 
 ### Node
 
@@ -150,7 +157,7 @@ dotnet tool install --global dotnet-ef
 
 ## Docker
 
-Docker is used to build and deploy the code for this project. It is also used to spin-up services for local development such as the database.
+Docker is used to build and deploy the code for this project. It is also used to spin-up services for local development such as the database and RabbitMQ message bus.
 
 ### Docker Desktop
 
@@ -241,6 +248,12 @@ The Application layer maps **Entities** from the database into **DTOs** using th
 
 The separation between Entity and DTO is very important to isolate the Core/Domain layer from changes to the API. It allows for backwards compatible changes to be implemented.
 
+## Integration Events
+
+Integration Events are handled asynchronously using RabbiqMQ via [MiniTransit](https://github.com/matt-bentley/MiniTransit).
+
+Message topics and subscriptions are dynamically created when events are subscribed to.
+
 # Migrations
 
 All schema and data migrations are automated using the **CleanArchitecture.Migrations** project.
@@ -277,6 +290,7 @@ The following steps must be performed to setup your local environment for runnin
 Docker is used to start the following services locally:
 
 - SQL Server or PostgreSQL
+- RabbitMQ
 
 A **dev** profile is included in the docker-compose file to run the required local services:
 ```
@@ -306,6 +320,7 @@ Before running the application your local services must be running and you must 
 The following projects must be set as startup projects to run the entire solution:
 - **CleanArchitecture.Api**
 - **CleanArchitecture.Web**
+- **CleanArchitecture.Integration**
 
 # Testing
 

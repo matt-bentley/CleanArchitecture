@@ -24,6 +24,17 @@ services:
     image: ${DOCKER_REGISTRY}cleanarchitecture/migrations:${TAG:-latest}
     profiles: ["server", "cd"]
 
+  rabbitmq:  
+    image: masstransit/rabbitmq
+    profiles: ["dev"]
+    container_name: cleanarchitecture-rabbitmq  
+    ports:  
+      - "5672:5672"     # AMQP protocol port  
+      - "15672:15672"   # Management web UI port  
+    environment:  
+      RABBITMQ_DEFAULT_USER: "guest"  
+      RABBITMQ_DEFAULT_PASS: "guest"
+
 #if (UseSqlServer)
   sql:
     image: mcr.microsoft.com/mssql/server:2019-latest

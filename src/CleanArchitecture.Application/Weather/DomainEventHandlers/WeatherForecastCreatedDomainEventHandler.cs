@@ -1,32 +1,24 @@
 ﻿using CleanArchitecture.Application.Abstractions.DomainEventHandlers;
+using CleanArchitecture.Application.Weather.IntegrationEvents;
 using CleanArchitecture.Core.Weather.DomainEvents;
 using Microsoft.Extensions.Logging;
-using CleanArchitecture.Core.Abstractions.Services;
+using MiniTransit;
 
 namespace CleanArchitecture.Application.Weather.DomainEventHandlers
 {
     public sealed class WeatherForecastCreatedDomainEventHandler : DomainEventHandler<WeatherForecastCreatedDomainEvent>
     {
-        private readonly INotificationsService _notificationsService;
+        private readonly IBus _eventBus;
 
         public WeatherForecastCreatedDomainEventHandler(ILogger<DomainEventHandler<WeatherForecastCreatedDomainEvent>> logger,
-            INotificationsService notificationsService) : base(logger)
+            IBus eventBus) : base(logger)
         {
-            _notificationsService = notificationsService;
+            _eventBus = eventBus;
         }
 
         protected override async Task OnHandleAsync(WeatherForecastCreatedDomainEvent @event)
         {
-            if (IsExtremeTemperature(@event.Temperature))
-            {
-                Logger.LogWarning("{summary} temperature alert - {temperature}C", @event.Summary, @event.Temperature);
-                await _notificationsService.WeatherAlertAsync(@event.Summary, @event.Temperature, @event.Date);
-            }
-        }
-
-        private bool IsExtremeTemperature(int temperatureC)
-        {
-            return temperatureC < 0 || temperatureC > 40;
+            await _eventBus.PublishAsync(new WeatherForecastCreatedEvent(@event.Id, @event.Temperature, @event.Summary, @event.Date, CorrelationId));
         }
     }
 }
