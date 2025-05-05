@@ -36,6 +36,7 @@ The application extends the typical *Weather Forecast* example provided in defau
   - [Command Query Responsibility Segregation](#Command-Query-Responsibility-Segregation)
   - [Domain Events](#Domain-Events)
   - [Data Transfer Objects and Mapping](#Data-Transfer-Objects-and-Mapping)
+  - [Integration Events](#Integration-Events)
 - [Migrations](#Migrations)
   - [Create a Database Migration](#Create-a-Database-Migration)
   - [Run Migrations](#Run-Migrations)
