@@ -47,7 +47,7 @@ namespace CleanArchitecture.Application.Tests.Weather.IntegrationEvents
         private ConsumeContext<WeatherForecastCreatedEvent> GenerateContext(WeatherForecastCreatedEvent @event)
         {
             var subscriptionContext = new SubscriptionContext("events", "test", @event.GetType().Name, _handler.GetType().Name, 0);
-            return new ConsumeContext<WeatherForecastCreatedEvent>(@event, subscriptionContext, Mock.Of<IPublisher>());
+            return new ConsumeContext<WeatherForecastCreatedEvent>(@event, subscriptionContext, Mock.Of<IPublisher>(), default);
         }
     }
 }
